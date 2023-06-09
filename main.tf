@@ -19,7 +19,7 @@ resource "aws_key_pair" "travier" {
 
 resource "aws_instance" "devconfcz2023workshop" {
   ami           = "ami-016a79745fc97446a"
-  instance_type = "t2.micro"
+  instance_type = "m6i.4xlarge"
   key_name      = "travier"
   tags = {
     Name = "devconfcz2023"
