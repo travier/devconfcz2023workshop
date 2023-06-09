@@ -1,8 +1,6 @@
 resource "aws_vpc" "vpc" {
   provider             = aws.region
   cidr_block           = "172.31.0.0/16"
-  enable_dns_support   = false
-  enable_dns_hostnames = false
 
   tags = {
     Name = "devconfcz2023workshop"
