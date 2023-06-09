@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    replace:
+      source: "s3://devconfcz2023workshop/config.ign"

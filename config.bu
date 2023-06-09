@@ -1,0 +1,141 @@
+variant: fcos
+version: 1.3.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAHLT6yxa+xOVvQsLL2MgkjhaVg+tVd9plsK2+7exmpfhTUY8uFrGk9kLvwgNvavwj4BKvryy33SU65W/3GoCMUpDADIEqtbv8oIsscnjtGgaJHTmw0RZN4NsLUEHELBqkWs23Y85aUAcRVjiGfyhB+qTgFMrlC9zNpBlltWCCcH926FhA== dustymabe@home21
+    - name: labuser1
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser2
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser3
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser4
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser5
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser6
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser7
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser8
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser9
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser10
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser11
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser12
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser13
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser14
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser15
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser16
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser17
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser18
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+    - name: labuser19
+      password_hash: $y$j9T$GKhRAmATUL80mvVCBAhUJ.$29CYwtZIwlEFzo59BbLm2/fmSpCXFsqoEhvL7Cof7S.
+storage:
+  files:
+    - path: /etc/ssh/sshd_config.d/20-enable-passwords.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Fedora CoreOS disables SSH password login by default.
+          # Enable it.
+          # This file must sort before 40-disable-passwords.conf.
+          PasswordAuthentication yes
+    - path: /etc/systemd/system/rpm-ostree-install.service.d/rpms.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          Environment=RPMS="virt-install libvirt-daemon-kvm libvirt-daemon-config-network guestfs-tools"
+    - path: /usr/local/bin/butane
+      mode: 0755
+      contents:
+        source: https://github.com/coreos/butane/releases/download/v0.15.0/butane-x86_64-unknown-linux-gnu
+    - path: /usr/local/bin/ignition-validate
+      mode: 0755
+      contents:
+        source: https://github.com/coreos/ignition/releases/download/v2.14.0/ignition-validate-x86_64-linux
+    - path: /srv/fedora-coreos.qcow2.xz
+      mode: 0644
+      contents:
+        source: https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/36.20220723.3.1/x86_64/fedora-coreos-36.20220723.3.1-qemu.x86_64.qcow2.xz
+        verification:
+          hash: sha256-5d24bbc536fac409d21da1c8de5d71b72c25e0079cd871ac49020555af382fb7
+    - path: /usr/local/bin/setup-users.sh
+      mode: 0755
+      contents:
+        inline: |
+          #!/bin/bash
+          set -eux -o pipefail
+          for x in {1..19}; do
+              install --group="labuser${x}" --owner="labuser${x}" -d /home/labuser${x}/coreos
+              ln /srv/fedora-coreos.qcow2 /home/labuser${x}/coreos/fedora-coreos.qcow2
+              sudo -u "labuser${x}" ssh-keygen -f /var/home/"labuser${x}"/.ssh/id_rsa -N ""
+          done
+systemd:
+  units:
+    - name: rpm-ostree-install.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Layer additional rpms
+        Wants=network-online.target
+        After=network-online.target
+        # We run before `zincati.service` to avoid conflicting rpm-ostree transactions.
+        Before=zincati.service
+        ConditionPathExists=!/var/lib/%N.stamp
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/rpm-ostree install --apply-live --allow-inactive $RPMS
+        ExecStart=sed -i s/192.168.122/192.168.124/g /etc/libvirt/qemu/networks/default.xml 
+        ExecStart=systemctl enable --now virtnetworkd.service libvirtd.socket
+        ExecStart=/bin/touch /var/lib/%N.stamp
+        [Install]
+        WantedBy=multi-user.target
+    - name: setup-qcow.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Setup the qcow image
+        ConditionPathExists=!/var/lib/%N.stamp
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=unxz /srv/fedora-coreos.qcow2.xz
+        ExecStart=chmod 666 /srv/fedora-coreos.qcow2
+        ExecStart=/bin/touch /var/lib/%N.stamp
+        [Install]
+        WantedBy=multi-user.target
+    - name: setup-users.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Setup the users
+        ConditionPathExists=!/var/lib/%N.stamp
+        After=setup-qcow.service
+        After=rpm-ostree-install.service
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/local/bin/setup-users.sh
+        ExecStart=virt-edit -a /srv/fedora-coreos.qcow2 -m /dev/sda3 /loader.1/entries/ostree-1-fedora-coreos.conf -e 's/ignition.platform.id=qemu/ignition.platform.id=qemu enforcing=0/'
+        ExecStart=chattr +i /srv/fedora-coreos.qcow2
+        ExecStart=/bin/touch /var/lib/%N.stamp
+        [Install]
+        WantedBy=multi-user.target
+
+
+#       ExecStart=virsh net-start default
