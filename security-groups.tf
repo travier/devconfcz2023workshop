@@ -1,14 +1,14 @@
-resource "aws_security_group" "devconfcz2023workshop" {
+resource "aws_security_group" "sg" {
   name        = "devconfcz2023workshop"
   description = "Allow SSH inbound traffic only"
-  vpc_id      = aws_vpc.devconf2023workshop.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    description = "SSH from VPC"
+    description = "SSH access"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_vpc.devconf2023workshop.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

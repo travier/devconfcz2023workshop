@@ -30,6 +30,7 @@ ssh:
 
 config:
     butane --strict --output config.ign config.bu
+    cat config.ign | base64 -w 0
 
 config-s3:
     #!/bin/bash
