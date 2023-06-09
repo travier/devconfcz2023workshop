@@ -29,7 +29,19 @@ config:
     aws s3 ls s3://devconfcz2023workshop/
     rm ./config.ign
 
+config-http:
+    #!/bin/bash
+    set -euxo pipefail
+    butane --strict --output config.ign config.bu
+    scp config.ign fcos.siosm.fr:/srv/www/public/9cb9786aa7d83098053f17605671b91db66ae1c9c7fd510b78fa1b78ce4c306f.ign
+    rm ./config.ign
+
 pointer:
     #!/bin/bash
     set -euxo pipefail
     butane --strict pointer.bu | base64 -w 0
+
+pointer-http:
+    #!/bin/bash
+    set -euxo pipefail
+    butane --strict pointer-http.bu | base64 -w 0

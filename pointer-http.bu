@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.4.0
+ignition:
+  config:
+    replace:
+      source: "https://fcos.siosm.fr/9cb9786aa7d83098053f17605671b91db66ae1c9c7fd510b78fa1b78ce4c306f.ign"

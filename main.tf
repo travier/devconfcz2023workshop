@@ -28,5 +28,5 @@ resource "aws_instance" "devconfcz2023workshop" {
     volume_size = "100"
     volume_type = "gp3"
   }
-  user_data_base64 = "eyJpZ25pdGlvbiI6eyJjb25maWciOnsicmVwbGFjZSI6eyJzb3VyY2UiOiJzMzovL2RldmNvbmZjejIwMjN3b3Jrc2hvcC9jb25maWcuaWduIn19LCJ2ZXJzaW9uIjoiMy4zLjAifX0K"
+  user_data_base64 = "eyJpZ25pdGlvbiI6eyJjb25maWciOnsicmVwbGFjZSI6eyJzb3VyY2UiOiJodHRwczovL2Zjb3Muc2lvc20uZnIvOWNiOTc4NmFhN2Q4MzA5ODA1M2YxNzYwNTY3MWI5MWRiNjZhZTFjOWM3ZmQ1MTBiNzhmYTFiNzhjZTRjMzA2Zi5pZ24ifX0sInZlcnNpb24iOiIzLjMuMCJ9fQo="
 }
