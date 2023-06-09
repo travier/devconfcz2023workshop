@@ -8,7 +8,7 @@ resource "aws_instance" "instance" {
   }
 
   vpc_security_group_ids = [aws_security_group.sg.id]
-  subnet_id = aws_subnet.subnet_1.id
+  subnet_id              = aws_subnet.subnet_1.id
 
   root_block_device {
     volume_size = "100"

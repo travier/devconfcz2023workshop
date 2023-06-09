@@ -1,6 +1,6 @@
 resource "aws_vpc" "vpc" {
-  provider = aws.region
-  cidr_block       = "172.31.0.0/16"
+  provider             = aws.region
+  cidr_block           = "172.31.0.0/16"
   enable_dns_support   = false
   enable_dns_hostnames = false
 
@@ -11,7 +11,7 @@ resource "aws_vpc" "vpc" {
 
 resource "aws_internet_gateway" "igw" {
   provider = aws.region
-  vpc_id   = aws_vpc.vpc
+  vpc_id   = aws_vpc.vpc.id
 }
 
 data "aws_availability_zones" "azs" {
@@ -21,10 +21,11 @@ data "aws_availability_zones" "azs" {
 
 
 resource "aws_subnet" "subnet_1" {
-  provider          = aws.region
-  availability_zone = element(data.aws_availability_zones.azs.names, 0)
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "172.31.1.0/24"
+  provider                = aws.region
+  availability_zone       = element(data.aws_availability_zones.azs.names, 0)
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "172.31.1.0/24"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "devconf2023workshop_1"
@@ -32,10 +33,11 @@ resource "aws_subnet" "subnet_1" {
 }
 
 resource "aws_subnet" "subnet_2" {
-  provider          = aws.region
-  availability_zone = element(data.aws_availability_zones.azs.names, 1)
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "172.31.2.0/24"
+  provider                = aws.region
+  availability_zone       = element(data.aws_availability_zones.azs.names, 1)
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "172.31.2.0/24"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "devconf2023workshop_2"
@@ -43,10 +45,11 @@ resource "aws_subnet" "subnet_2" {
 }
 
 resource "aws_subnet" "subnet_3" {
-  provider          = aws.region
-  availability_zone = element(data.aws_availability_zones.azs.names, 2)
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "172.31.3.0/24"
+  provider                = aws.region
+  availability_zone       = element(data.aws_availability_zones.azs.names, 2)
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "172.31.3.0/24"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "devconf2023workshop_3"
