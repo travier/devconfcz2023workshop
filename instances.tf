@@ -1,6 +1,6 @@
 resource "aws_instance" "instance" {
   ami           = "ami-016a79745fc97446a"
-  instance_type = "m6i.4xlarge"
+  instance_type = "c6i.4xlarge"
   key_name      = "travier"
 
   tags = {
