@@ -20,6 +20,14 @@ destroy:
 show:
     terraform show
 
+ip:
+    terraform show -json | jq -r '.values.root_module.resources[0].values.public_ip'
+
+ssh:
+    !#/bin/bash
+    set -euxo pipefail
+    ssh -i ~/.ssh/keys/aws core@$(terraform show -json | jq -r '.values.root_module.resources[0].values.public_ip')
+
 config:
     #!/bin/bash
     set -euxo pipefail

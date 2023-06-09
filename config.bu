@@ -113,7 +113,6 @@ systemd:
         RemainAfterExit=yes
         ExecStart=unxz /srv/fedora-coreos.qcow2.xz
         ExecStart=chmod 444 /srv/fedora-coreos.qcow2
-        ExecStart=chattr +i /srv/fedora-coreos.qcow2
         ExecStart=/bin/touch /var/lib/%N.stamp
         [Install]
         WantedBy=multi-user.target
@@ -129,6 +128,7 @@ systemd:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/usr/local/bin/setup-users.sh
+        ExecStart=chattr +i /srv/fedora-coreos.qcow2
         ExecStart=/bin/touch /var/lib/%N.stamp
         [Install]
         WantedBy=multi-user.target
