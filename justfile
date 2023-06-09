@@ -21,12 +21,12 @@ show:
     terraform show
 
 ip:
-    terraform show -json | jq -r '.values.root_module.resources[0].values.public_ip'
+    terraform show -json | jq -r '.values.root_module.resources[].values.public_ip' | grep -v 'null'
 
 ssh:
-    !#/bin/bash
+    #!/bin/bash
     set -euxo pipefail
-    ssh -i ~/.ssh/keys/aws core@$(terraform show -json | jq -r '.values.root_module.resources[0].values.public_ip')
+    ssh -i ~/.ssh/keys/aws core@$(terraform show -json | jq -r '.values.root_module.resources[].values.public_ip' | grep -v 'null')
 
 config:
     #!/bin/bash

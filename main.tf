@@ -17,26 +17,32 @@ resource "aws_key_pair" "travier" {
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcLpPwysXQ7IVZtgJWmC3g6NfkaDyoStfFlA0f2668f tim@phoenix"
 }
 
-resource "aws_vpc" "devconf2023workshop" {
-  cidr_block       = "172.31.0.0/16"
-  instance_tenancy = "default"
+# resource "aws_vpc" "devconf2023workshop" {
+#   cidr_block       = "172.31.0.0/16"
+#   instance_tenancy = "default"
+#
+#   tags = {
+#     Name = "devconfcz2023workshop"
+#   }
+# }
 
+resource "aws_default_vpc" "default" {
   tags = {
-    Name = "devconfcz2023workshop"
+    Name = "Default VPC"
   }
 }
 
 resource "aws_security_group" "devconfcz2023workshop" {
   name        = "devconfcz2023workshop"
   description = "Allow SSH inbound traffic only"
-  vpc_id      = aws_vpc.devconf2023workshop.id
+  vpc_id      = aws_default_vpc.default.id
 
   ingress {
     description = "SSH from VPC"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_vpc.devconf2023workshop.cidr_block]
+    cidr_blocks = [aws_default_vpc.default.cidr_block]
   }
 
   egress {
@@ -60,7 +66,7 @@ resource "aws_instance" "devconfcz2023workshop" {
     Name = "devconfcz2023workshop"
   }
 
-  security_groups = ["devconfcz2023workshop"]
+  vpc_security_group_ids = [aws_security_group.devconfcz2023workshop.id]
 
   root_block_device {
     volume_size = "100"
